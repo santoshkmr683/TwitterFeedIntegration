@@ -12,4 +12,5 @@ public interface Constant {
     String SERVER_ERROR = "Please try after some time...";
 
     String SERIALIZABLE_KEY = "Profile Event";
+    String SCREEN_NAME = "BBCNews";
 }

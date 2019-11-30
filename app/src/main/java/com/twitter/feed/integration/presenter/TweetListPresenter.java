@@ -2,6 +2,7 @@ package com.twitter.feed.integration.presenter;
 
 import android.content.Context;
 
+import com.twitter.feed.integration.R;
 import com.twitter.feed.integration.interactor.TwitterConnectionManager;
 import com.twitter.feed.integration.model.TwitterTweetRes;
 import com.twitter.feed.integration.networkcall.APICallback;
@@ -17,14 +18,15 @@ public class TweetListPresenter extends BasePresenter {
         super(view);
     }
 
-    public void getAuthTokenCall(Context context, String authToken) {
+    public void getAuthTokenCall(Context context, String authToken, String screenName) {
 
         if (!AppUtil.isNetworkAvailable(context)) {
             showNetworkAlert();
             return;
         }
+        String finalUrl = context.getString(R.string.user_time_lines) + screenName;
         showProgressBar();
-        TwitterConnectionManager.getTwitterTweets(authToken, new APICallback<List<TwitterTweetRes>>() {
+        TwitterConnectionManager.getTwitterTweets(finalUrl, authToken, new APICallback<List<TwitterTweetRes>>() {
 
             @Override
             public void onResponseSuccess(List<TwitterTweetRes> response) {

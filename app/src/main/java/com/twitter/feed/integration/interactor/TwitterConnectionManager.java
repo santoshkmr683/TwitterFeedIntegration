@@ -19,10 +19,11 @@ public class TwitterConnectionManager {
         callObj.enqueue(callback);
     }
 
-    public static void getTwitterTweets(String authToken, APICallback<List<TwitterTweetRes>> callback) {
+    public static void getTwitterTweets(String url, String authToken,
+                                        APICallback<List<TwitterTweetRes>> callback) {
 
         Call<List<TwitterTweetRes>> callObj = APIServiceUtil.getInstance().getApiInterface()
-                .getTwitterTweetsList(AppUtil.getTweetHeader(authToken));
+                .getTwitterTweetsList(url, AppUtil.getTweetHeader(authToken));
         callObj.enqueue(callback);
     }
 }

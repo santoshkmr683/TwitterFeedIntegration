@@ -38,7 +38,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             app:roundAsCircle="true"
-            app:roundingBorderWidth="2dp"
+            app:roundingBorderWidth="3dp"
             app:roundingBorderColor="@color/colorWhite"
             app:placeholderImage="@drawable/ic_twitter_social_icon"
             android:contentDescription="@null" />

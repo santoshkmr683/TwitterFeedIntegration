@@ -82,7 +82,8 @@ public class FeedFragment extends BaseFragment implements
 
     @Override
     public void onAuthTokenSuccess(AuthRes authRes) {
-        new TweetListPresenter(this).getAuthTokenCall(getContext(), authRes.getAccessToken());
+        new TweetListPresenter(this).getAuthTokenCall(getContext(),
+                authRes.getAccessToken(), Constant.SCREEN_NAME);
     }
 
     @Override

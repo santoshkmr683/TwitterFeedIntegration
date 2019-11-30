@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
+import retrofit2.http.Url;
 
 public interface APIInterface {
 
@@ -20,6 +21,6 @@ public interface APIInterface {
     Call<AuthRes> getTwitterAuthToken(@HeaderMap Map<String, String> headers,
                                       @Field("grant_type") String grantType);
 
-    @GET("1.1/statuses/user_timeline.json?screen_name=BBCNews")
-    Call<List<TwitterTweetRes>> getTwitterTweetsList(@HeaderMap Map<String, String> headers);
+    @GET
+    Call<List<TwitterTweetRes>> getTwitterTweetsList(@Url String url, @HeaderMap Map<String, String> headers);
 }

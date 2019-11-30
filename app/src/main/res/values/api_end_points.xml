@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--End points APIs-->
+    <string name="user_time_lines">1.1/statuses/user_timeline.json?screen_name=</string>
+</resources>
