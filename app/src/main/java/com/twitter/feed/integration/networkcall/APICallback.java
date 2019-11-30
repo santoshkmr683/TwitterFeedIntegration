@@ -10,7 +10,7 @@ import retrofit2.Response;
 
 public abstract class APICallback<T> implements Callback<T> {
 
-    public APICallback() {
+    protected APICallback() {
 
     }
 

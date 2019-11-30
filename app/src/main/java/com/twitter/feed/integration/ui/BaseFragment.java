@@ -73,6 +73,6 @@ public class BaseFragment extends Fragment implements BaseView {
 
     @Override
     public void showError(String errorMessage) {
-
+        Toast.makeText(getContext(), errorMessage + " "+ Constant.SERVER_ERROR, Toast.LENGTH_SHORT).show();
     }
 }

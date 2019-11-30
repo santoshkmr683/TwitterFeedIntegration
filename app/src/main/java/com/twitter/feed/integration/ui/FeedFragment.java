@@ -35,7 +35,8 @@ import java.util.List;
 /**
  * A simple {@link BaseFragment} subclass.
  */
-public class FeedFragment extends BaseFragment implements AuthTokenView, TweetListView {
+public class FeedFragment extends BaseFragment implements
+        AuthTokenView, TweetListView {
 
     private RecyclerView mRecyclerView;
 
@@ -116,7 +117,8 @@ public class FeedFragment extends BaseFragment implements AuthTokenView, TweetLi
 
     @Subscribe
     public void onProfileImgClick(ProfileClickEvent profileClickEvent) {
-        FragmentHelper.addFragment(getActivity(), ProfileFragment.newInstance(profileClickEvent), R.id.fragment_container);
+        FragmentHelper.addFragment(getActivity(), ProfileFragment
+                .newInstance(profileClickEvent), R.id.fragment_container);
     }
 
 
