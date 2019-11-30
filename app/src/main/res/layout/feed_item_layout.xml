@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:background="@color/colorDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:padding="@dimen/margin_padding_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/profile_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:roundAsCircle="true"
+        app:placeholderImage="@drawable/profile_place_holder_img"
+        android:contentDescription="@null" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/margin_padding_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_16sp"
+            android:textColor="@color/colorBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/desc"
+            android:textColor="@color/colorBlack"
+            android:textStyle="normal"
+            android:textSize="@dimen/text_size_12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

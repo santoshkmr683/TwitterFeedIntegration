@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--margin padding in dp-->
+
+    <dimen name="margin_padding_10dp">10dp</dimen>
+    <dimen name="margin_padding_20dp">20dp</dimen>
+
+
+    <!--text size in sp-->
+    <dimen name="text_size_12sp">12sp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+
+
+
+</resources>
