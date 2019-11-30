@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.twitter.feed.integration.R;
+import com.twitter.feed.integration.util.Constant;
 import com.twitter.feed.integration.view.BaseView;
 
 /**
@@ -45,7 +46,7 @@ public class BaseFragment extends Fragment implements BaseView {
         mViewProgressBarContainer = view.findViewById(R.id.progress_bar_container);
     }
 
-    protected void setLayout(int layoutId) {
+    void setLayout(int layoutId) {
         mLayoutId = layoutId;
     }
 
@@ -66,7 +67,7 @@ public class BaseFragment extends Fragment implements BaseView {
 
     @Override
     public void showNoNetworkAlert() {
-        Toast.makeText(getContext(),"Please check your internet connection.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), Constant.INTERNET_CONNECTION_MSG, Toast.LENGTH_SHORT).show();
 
     }
 

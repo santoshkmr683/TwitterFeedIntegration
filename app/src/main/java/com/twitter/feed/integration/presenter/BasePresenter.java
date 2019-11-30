@@ -6,18 +6,24 @@ public class BasePresenter {
 
     private BaseView mView;
 
-    protected BasePresenter(BaseView view) {
+    BasePresenter(BaseView view) {
         mView = view;
     }
 
-    public void showNetworkAlert() {
+    void showNetworkAlert() {
         if (null != mView) {
             mView.showNoNetworkAlert();
         }
     }
 
+    void showProgressBar() {
+        if (null != mView) {
+            mView.showProgressBar();
+        }
+    }
+
     // Base implementation to handle error. If you need more control, override it.
-    public void handleError(String errorMsg) {
+    void handleError(String errorMsg) {
         if (mView != null) {
             mView.showError(errorMsg);
         }

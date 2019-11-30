@@ -1,6 +1,8 @@
 package com.twitter.feed.integration.event;
 
 
+import com.twitter.feed.integration.model.TwitterUser;
+
 import org.greenrobot.eventbus.EventBus;
 
 public final class Bus {
@@ -22,6 +24,10 @@ public final class Bus {
 
     public static void postClickOnUrlEvent(String url) {
         post(new UrlEvent(url));
+    }
+
+    public static void postProfileClickEvent(TwitterUser twitterUser) {
+        post(new ProfileClickEvent(twitterUser));
     }
 
 }

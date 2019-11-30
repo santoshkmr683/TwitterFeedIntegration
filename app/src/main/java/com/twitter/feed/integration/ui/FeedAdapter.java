@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,8 +46,18 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
                 .getTwitterUser().getProfileImageUrl()));
         holder.nameTv.setText(mTwitterTweetList.get(position).getTwitterUser().getName());
         setLinkOnHttpsString(holder.descTv, mTwitterTweetList.get(position).getText());
+
+        holder.profileImgView.setOnClickListener(v -> Bus
+                .postProfileClickEvent(mTwitterTweetList
+                        .get(position).getTwitterUser()));
     }
 
+    /**
+     * This method is used to set color on https text and
+     * provide the clickable link to http word
+     * @param textView is an instance of textView
+     * @param desc string description which need to set on textView
+     */
     private void setLinkOnHttpsString(final TextView textView, String desc) {
 
         Spannable spannableString = new SpannableString(desc);
@@ -59,7 +68,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             public void onClick(@NonNull View view) {
                 if (httpString != null && !httpString.isEmpty()) {
                     Bus.postClickOnUrlEvent(httpString);
-                    //Toast.makeText(textView.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -69,7 +77,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
                 textPaint.setColor(textView.getResources().getColor(R.color.colorPrimary));
             }
         };
-
 
         if (httpString != null && !httpString.isEmpty()) {
             int length = httpString.length();
@@ -99,6 +106,5 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             nameTv = itemView.findViewById(R.id.user_name);
             descTv = itemView.findViewById(R.id.desc);
         }
-
     }
 }

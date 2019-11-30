@@ -23,7 +23,7 @@ public class TweetListPresenter extends BasePresenter {
             showNetworkAlert();
             return;
         }
-
+        showProgressBar();
         TwitterConnectionManager.getTwitterTweets(authToken, new APICallback<List<TwitterTweetRes>>() {
 
             @Override

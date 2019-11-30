@@ -12,7 +12,4 @@ public class UrlEvent extends BaseEvent {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
 }

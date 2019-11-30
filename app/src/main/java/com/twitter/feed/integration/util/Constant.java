@@ -8,4 +8,7 @@ public interface Constant {
 
 
     String KEY_URL = "key_url";
+    String INTERNET_CONNECTION_MSG = "Please check your internet connection.";
+
+    String SERIALIZABLE_KEY = "Profile Event";
 }

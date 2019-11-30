@@ -21,7 +21,7 @@ public class AuthTokenPresenter extends BasePresenter {
             showNetworkAlert();
             return;
         }
-
+        showProgressBar();
         TwitterConnectionManager.getTwitterAuthToken(new APICallback<AuthRes>() {
 
             @Override
