@@ -52,4 +52,16 @@ public class AppUtil {
         }
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+    public static String getWordWhichStartFromHttps(String sourceString) {
+
+        String[] strArray = sourceString.split(" ");
+        String httpString = null;
+        for (String s : strArray) {
+            if (s.contains("https")) {
+                httpString = s;
+            }
+        }
+        return httpString;
+    }
 }

@@ -1,10 +1,18 @@
 package com.twitter.feed.integration.ui;
 
+import android.graphics.Typeface;
 import android.net.Uri;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.twitter.feed.integration.R;
 import com.twitter.feed.integration.model.TwitterTweetRes;
+import com.twitter.feed.integration.util.AppUtil;
 
 import java.util.List;
 
@@ -36,7 +45,40 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         holder.profileImgView.setImageURI(Uri.parse(mTwitterTweetList.get(position)
                 .getTwitterUser().getProfileImageUrl()));
         holder.nameTv.setText(mTwitterTweetList.get(position).getTwitterUser().getName());
-        holder.descTv.setText(mTwitterTweetList.get(position).getText());
+        //holder.descTv.setText(mTwitterTweetList.get(position).getText());
+        setLinkOnHttpsString(holder.descTv, mTwitterTweetList.get(position).getText());
+
+
+
+
+    }
+
+    private void setLinkOnHttpsString(final TextView textView, String desc) {
+
+        ClickableSpan linkClick = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(textView.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+                textPaint.setColor(textView.getResources().getColor(R.color.colorPrimary));
+            }
+        };
+
+        Spannable spannableString = new SpannableString(desc);
+        String httpString = AppUtil.getWordWhichStartFromHttps(desc);
+        if (httpString != null && !httpString.isEmpty()) {
+            int length = httpString.length();
+            spannableString.setSpan(linkClick, spannableString.length() - length,
+                    spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textView.setText(spannableString, TextView.BufferType.SPANNABLE);
+            textView.setMovementMethod(LinkMovementMethod.getInstance());
+        } else {
+            textView.setText(desc);
+        }
     }
 
     @Override
@@ -56,5 +98,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             nameTv = itemView.findViewById(R.id.user_name);
             descTv = itemView.findViewById(R.id.desc);
         }
+
     }
 }
