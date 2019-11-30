@@ -1,6 +1,7 @@
 package com.twitter.feed.integration.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.twitter.feed.integration.R;
 import com.twitter.feed.integration.database.AppDatabase;
+import com.twitter.feed.integration.event.Bus;
+import com.twitter.feed.integration.event.UrlEvent;
 import com.twitter.feed.integration.model.AuthRes;
 import com.twitter.feed.integration.model.TwitterTweetRes;
 import com.twitter.feed.integration.presenter.AuthTokenPresenter;
 import com.twitter.feed.integration.presenter.TweetListPresenter;
+import com.twitter.feed.integration.util.Constant;
 import com.twitter.feed.integration.view.AuthTokenView;
 import com.twitter.feed.integration.view.TweetListView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +63,14 @@ public class FeedFragment extends BaseFragment implements AuthTokenView, TweetLi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Bus.register(this);
         initView(view);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Bus.unregister(this);
     }
 
     private void initView(View view) {
@@ -88,5 +101,15 @@ public class FeedFragment extends BaseFragment implements AuthTokenView, TweetLi
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(new FeedAdapter(twitterTweetList));
+    }
+
+    @Subscribe
+    public void onFeedUrlClick(UrlEvent urlEvent) {
+        if (urlEvent != null && urlEvent.getUrl() != null &&
+                !urlEvent.getUrl().isEmpty()) {
+            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+            intent.putExtra(Constant.KEY_URL, urlEvent.getUrl());
+            startActivity(intent);
+        }
     }
 }

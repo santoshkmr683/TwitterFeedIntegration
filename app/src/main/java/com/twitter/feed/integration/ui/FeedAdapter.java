@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.twitter.feed.integration.R;
+import com.twitter.feed.integration.event.Bus;
 import com.twitter.feed.integration.model.TwitterTweetRes;
 import com.twitter.feed.integration.util.AppUtil;
 
@@ -45,20 +46,21 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         holder.profileImgView.setImageURI(Uri.parse(mTwitterTweetList.get(position)
                 .getTwitterUser().getProfileImageUrl()));
         holder.nameTv.setText(mTwitterTweetList.get(position).getTwitterUser().getName());
-        //holder.descTv.setText(mTwitterTweetList.get(position).getText());
         setLinkOnHttpsString(holder.descTv, mTwitterTweetList.get(position).getText());
-
-
-
-
     }
 
     private void setLinkOnHttpsString(final TextView textView, String desc) {
 
+        Spannable spannableString = new SpannableString(desc);
+        String httpString = AppUtil.getWordWhichStartFromHttps(desc);
+
         ClickableSpan linkClick = new ClickableSpan() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(textView.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+            public void onClick(@NonNull View view) {
+                if (httpString != null && !httpString.isEmpty()) {
+                    Bus.postClickOnUrlEvent(httpString);
+                    //Toast.makeText(textView.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -68,8 +70,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             }
         };
 
-        Spannable spannableString = new SpannableString(desc);
-        String httpString = AppUtil.getWordWhichStartFromHttps(desc);
+
         if (httpString != null && !httpString.isEmpty()) {
             int length = httpString.length();
             spannableString.setSpan(linkClick, spannableString.length() - length,

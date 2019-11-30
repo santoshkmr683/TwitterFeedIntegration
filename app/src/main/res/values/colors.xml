@@ -7,4 +7,6 @@
     <color name="colorBlack">#000000</color>
     <color name="placeholder_bg">#e1dddddd</color>
     <color name="colorDivider">#e8e8e8</color>
+
+    <color name="colorPrimaryWith50PercentOpacity">#801C9DEB</color>
 </resources>
