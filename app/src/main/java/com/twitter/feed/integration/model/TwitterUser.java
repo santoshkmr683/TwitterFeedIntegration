@@ -1,11 +1,11 @@
 package com.twitter.feed.integration.model;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class TwitterUser {
-
-	@SerializedName("id")
-	private int id;
 
 	@SerializedName("id_str")
 	private String idStr;
@@ -34,9 +34,6 @@ public class TwitterUser {
 	@SerializedName("listed_count")
 	private int listedCount;
 
-	@SerializedName("created_at")
-	private String createdAt;
-
 	@SerializedName("favourites_count")
 	private int favouritesCount;
 
@@ -51,39 +48,6 @@ public class TwitterUser {
 
 	@SerializedName("profile_banner_url")
 	private String profileBannerUrl;
-
-	@SerializedName("profile_link_color")
-	private String profileLinkColor;
-
-	@SerializedName("profile_sidebar_border_color")
-	private String profileSidebarBorderColor;
-
-	@SerializedName("profile_sidebar_fill_color")
-	private String profileSidebarFillColor;
-
-	@SerializedName("profile_text_color")
-	private String profileTextColor;
-
-	@SerializedName("profile_use_background_image")
-	private boolean profileUseBackgroundImage;
-
-	@SerializedName("has_extended_profile")
-	private boolean hasExtendedProfile;
-
-	@SerializedName("default_profile")
-	private boolean defaultProfile;
-
-	@SerializedName("default_profile_image")
-	private boolean defaultProfileImage;
-
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getIdStr() {
 		return idStr;
@@ -157,14 +121,6 @@ public class TwitterUser {
 		this.listedCount = listedCount;
 	}
 
-	public String getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(String createdAt) {
-		this.createdAt = createdAt;
-	}
-
 	public int getFavouritesCount() {
 		return favouritesCount;
 	}
@@ -206,67 +162,4 @@ public class TwitterUser {
 		this.profileBannerUrl = profileBannerUrl;
 	}
 
-	public String getProfileLinkColor() {
-		return profileLinkColor;
-	}
-
-	public void setProfileLinkColor(String profileLinkColor) {
-		this.profileLinkColor = profileLinkColor;
-	}
-
-	public String getProfileSidebarBorderColor() {
-		return profileSidebarBorderColor;
-	}
-
-	public void setProfileSidebarBorderColor(String profileSidebarBorderColor) {
-		this.profileSidebarBorderColor = profileSidebarBorderColor;
-	}
-
-	public String getProfileSidebarFillColor() {
-		return profileSidebarFillColor;
-	}
-
-	public void setProfileSidebarFillColor(String profileSidebarFillColor) {
-		this.profileSidebarFillColor = profileSidebarFillColor;
-	}
-
-	public String getProfileTextColor() {
-		return profileTextColor;
-	}
-
-	public void setProfileTextColor(String profileTextColor) {
-		this.profileTextColor = profileTextColor;
-	}
-
-	public boolean isProfileUseBackgroundImage() {
-		return profileUseBackgroundImage;
-	}
-
-	public void setProfileUseBackgroundImage(boolean profileUseBackgroundImage) {
-		this.profileUseBackgroundImage = profileUseBackgroundImage;
-	}
-
-	public boolean isHasExtendedProfile() {
-		return hasExtendedProfile;
-	}
-
-	public void setHasExtendedProfile(boolean hasExtendedProfile) {
-		this.hasExtendedProfile = hasExtendedProfile;
-	}
-
-	public boolean isDefaultProfile() {
-		return defaultProfile;
-	}
-
-	public void setDefaultProfile(boolean defaultProfile) {
-		this.defaultProfile = defaultProfile;
-	}
-
-	public boolean isDefaultProfileImage() {
-		return defaultProfileImage;
-	}
-
-	public void setDefaultProfileImage(boolean defaultProfileImage) {
-		this.defaultProfileImage = defaultProfileImage;
-	}
 }

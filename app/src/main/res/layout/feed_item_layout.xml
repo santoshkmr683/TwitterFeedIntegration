@@ -18,7 +18,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:roundAsCircle="true"
-        app:placeholderImage="@drawable/profile_place_holder_img"
+        app:placeholderImage="@drawable/ic_twitter_social_icon"
         android:contentDescription="@null" />
     <LinearLayout
         android:orientation="vertical"

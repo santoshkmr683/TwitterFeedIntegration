@@ -1,7 +1,7 @@
 package com.twitter.feed.integration.networkcall;
 
 import com.twitter.feed.integration.model.AuthRes;
-import com.twitter.feed.integration.model.TwitterTweet;
+import com.twitter.feed.integration.model.TwitterTweetRes;
 
 import java.util.List;
 import java.util.Map;
@@ -21,5 +21,5 @@ public interface APIInterface {
                                       @Field("grant_type") String grantType);
 
     @GET("1.1/statuses/user_timeline.json?screen_name=BBCNews")
-    Call<List<TwitterTweet>> getTwitterTweetsList(@HeaderMap Map<String, String> headers);
+    Call<List<TwitterTweetRes>> getTwitterTweetsList(@HeaderMap Map<String, String> headers);
 }

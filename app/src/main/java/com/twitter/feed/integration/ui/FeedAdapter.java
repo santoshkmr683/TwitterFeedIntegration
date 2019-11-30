@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.twitter.feed.integration.R;
-import com.twitter.feed.integration.model.TwitterTweet;
+import com.twitter.feed.integration.model.TwitterTweetRes;
 
 import java.util.List;
 
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
 
-    private List<TwitterTweet> mTwitterTweetList;
+    private List<TwitterTweetRes> mTwitterTweetList;
 
-    FeedAdapter(List<TwitterTweet> twitterTweetList){
+    FeedAdapter(List<TwitterTweetRes> twitterTweetList){
         this.mTwitterTweetList = twitterTweetList;
     }
 

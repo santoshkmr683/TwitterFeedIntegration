@@ -1,14 +1,23 @@
 package com.twitter.feed.integration.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class TwitterTweet {
+@Entity
+public class TwitterTweetRes {
+
+
+	@PrimaryKey
+	@SerializedName("id")
+	@NonNull
+	private String id = "1000000000000000001";
 
 	@SerializedName("created_at")
 	private String createdAt;
-
-	@SerializedName("id")
-	private String id;
 
 	@SerializedName("text")
 	private String text;
@@ -22,13 +31,15 @@ public class TwitterTweet {
 	@SerializedName("in_reply_to_screen_name")
 	private String inReplyToScreenName;
 
+	@Embedded
 	@SerializedName("user")
 	private TwitterUser twitterUser;
 
 	public String getCreatedAt() {
 		return createdAt;
 	}
-	
+
+	@NonNull
 	public String getId() {
 		return id;
 	}
@@ -53,7 +64,7 @@ public class TwitterTweet {
 		this.createdAt = createdAt;
 	}
 
-	public void setId(String id) {
+	public void setId(@NonNull String id) {
 		this.id = id;
 	}
 
@@ -81,8 +92,4 @@ public class TwitterTweet {
 		return twitterUser;
 	}
 
-	@Override
-	public String  toString(){
-		return getText();
-	}
 }

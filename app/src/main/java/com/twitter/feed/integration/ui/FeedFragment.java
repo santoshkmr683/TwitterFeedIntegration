@@ -2,6 +2,7 @@ package com.twitter.feed.integration.ui;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.twitter.feed.integration.R;
+import com.twitter.feed.integration.database.AppDatabase;
 import com.twitter.feed.integration.model.AuthRes;
-import com.twitter.feed.integration.model.TwitterTweet;
+import com.twitter.feed.integration.model.TwitterTweetRes;
 import com.twitter.feed.integration.presenter.AuthTokenPresenter;
 import com.twitter.feed.integration.presenter.TweetListPresenter;
 import com.twitter.feed.integration.view.AuthTokenView;
 import com.twitter.feed.integration.view.TweetListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,8 +72,10 @@ public class FeedFragment extends BaseFragment implements AuthTokenView, TweetLi
     }
 
     @Override
-    public void onTweetsSuccess(List<TwitterTweet> twitterTweetList) {
+    public void onTweetsSuccess(List<TwitterTweetRes> twitterTweetList) {
         hideProgressBar();
+        AppDatabase.getSharedInstance(getContext()).getTwitterTweetDao().nukeTable();
+        AppDatabase.getSharedInstance(getContext()).getTwitterTweetDao().insertAll(twitterTweetList);
         setRecyclerViewData(twitterTweetList);
     }
 
@@ -78,7 +83,7 @@ public class FeedFragment extends BaseFragment implements AuthTokenView, TweetLi
      * This method is used to set recycler view data
      * @param twitterTweetList is an instance of twitter list
      */
-    private void setRecyclerViewData(List<TwitterTweet> twitterTweetList) {
+    private void setRecyclerViewData(List<TwitterTweetRes> twitterTweetList) {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -1,7 +1,7 @@
 package com.twitter.feed.integration.interactor;
 
 import com.twitter.feed.integration.model.AuthRes;
-import com.twitter.feed.integration.model.TwitterTweet;
+import com.twitter.feed.integration.model.TwitterTweetRes;
 import com.twitter.feed.integration.networkcall.APICallback;
 import com.twitter.feed.integration.networkcall.APIServiceUtil;
 import com.twitter.feed.integration.util.AppUtil;
@@ -19,9 +19,9 @@ public class TwitterConnectionManager {
         callObj.enqueue(callback);
     }
 
-    public static void getTwitterTweets(String authToken, APICallback<List<TwitterTweet>> callback) {
+    public static void getTwitterTweets(String authToken, APICallback<List<TwitterTweetRes>> callback) {
 
-        Call<List<TwitterTweet>> callObj = APIServiceUtil.getInstance().getApiInterface()
+        Call<List<TwitterTweetRes>> callObj = APIServiceUtil.getInstance().getApiInterface()
                 .getTwitterTweetsList(AppUtil.getTweetHeader(authToken));
         callObj.enqueue(callback);
     }
