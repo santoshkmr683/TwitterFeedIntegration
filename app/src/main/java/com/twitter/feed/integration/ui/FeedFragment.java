@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -108,11 +109,14 @@ public class FeedFragment extends BaseFragment implements
     @Subscribe
     public void onFeedUrlClick(UrlEvent urlEvent) {
         if (urlEvent != null && urlEvent.getUrl() != null &&
-                !urlEvent.getUrl().isEmpty() && getContext() != null &&
-                AppUtil.isNetworkAvailable(getContext())) {
-            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-            intent.putExtra(Constant.KEY_URL, urlEvent.getUrl());
-            startActivity(intent);
+                !urlEvent.getUrl().isEmpty() && getContext() != null) {
+            if (AppUtil.isNetworkAvailable(getContext())) {
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra(Constant.KEY_URL, urlEvent.getUrl());
+                startActivity(intent);
+            } else {
+                Toast.makeText(getContext(), Constant.INTERNET_CONNECTION_MSG, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
